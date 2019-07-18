@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundoo_notes/colors.dart';
+import 'package:fundoo_notes/utils.dart';
+import 'package:tuple/tuple.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -7,11 +9,7 @@ class Home extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            colors: [
-              _gradientStartColor,
-              _gradientCenterColor,
-              _gradientEndColor
-            ],
+            colors: [gradientStartColor, gradientCenterColor, gradientEndColor],
             begin: const FractionalOffset(0.0, 0.0),
             end: const FractionalOffset(1.0, 1.0),
             stops: [0.0, 0.5, 1.0],
@@ -28,72 +26,65 @@ class Home extends StatelessWidget {
 class _HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var tupleWidthHeight = _getWidthHeight(context);
+    var blockSizeWidth = tupleWidthHeight.item1;
+    var blockSizeHeight = tupleWidthHeight.item2;
+
     return Center(
-        child: Padding(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _welcomeImage,
-          _welcomeUserText,
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                createButton(
-                    textString: 'Sign In',
-                    action: () {
-                      print('Sign In Pressed');
-                    }),
-                Padding(
-                  child: Text(
-                    'or',
-                    style: TextStyle(
-                      color: primaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _welcomeImage(blockSizeWidth, blockSizeHeight),
+        _welcomeUserText,
+        Padding(
+          padding: EdgeInsets.all(20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              createButton(
+                  textString: 'Sign In',
+                  action: () {
+                    print('Sign In Pressed');
+                  }),
+              Padding(
+                child: Text(
+                  'or',
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontWeight: FontWeight.bold,
                   ),
-                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                 ),
-                createButton(
-                    textString: 'Sign Up',
-                    action: () {
-                      print('Sign Up Pressed');
-                    })
-              ],
-            ),
-          )
-        ],
-      ),
+                padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+              ),
+              createButton(
+                  textString: 'Sign Up',
+                  action: () {
+                    print('Sign Up Pressed');
+                  })
+            ],
+          ),
+        ),
+        Center(
+          child: _forgotPasswordTextButton,
+        )
+      ],
     ));
   }
 }
 
-RaisedButton createButton({String textString, Function action}) {
-  return RaisedButton(
-    child: Text(
-      textString.toUpperCase(),
-      style: TextStyle(
-        color: primaryColor,
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    padding: EdgeInsets.all(10),
-    onPressed: action,
-    color: _gradientStartColor,
-    shape: BeveledRectangleBorder(
-      borderRadius: BorderRadius.circular(3),
-      side: BorderSide(color: _gradientCenterColor.withAlpha(100)),
-    ),
+Image _welcomeImage(double width, double height) {
+  return Image(
+    image: AssetImage('assets/bulb.png'),
+    height: height,
+    width: width,
+    fit: BoxFit.fitHeight,
+    color: primaryColor.withAlpha(200),
   );
 }
 
-// TODO : Set Image and then test cases for android
-var _welcomeImage = Image.asset(
-  'assets/image_launcher.jpg',
-  height: 100,
+var _forgotPasswordTextButton = FlatButton(
+  child: Text('Forgot password?'),
+  onPressed: () {},
 );
 
 var _welcomeUserText = Text(
@@ -110,6 +101,13 @@ var _welcomeUserText = Text(
   ),
 );
 
-var _gradientStartColor = Color.fromARGB(255, 238, 238, 247);
-var _gradientEndColor = Color.fromARGB(255, 232, 232, 250);
-var _gradientCenterColor = Color.fromARGB(255, 196, 185, 219);
+
+Tuple2<double, double> _getWidthHeight(BuildContext context) {
+var _mediaQueryData = MediaQuery.of(context);
+    var screenWidth = _mediaQueryData.size.width;
+    var screenHeight = _mediaQueryData.size.height;
+    var blockSizeWidth = screenWidth / 2;
+    var blockSizeHeight = screenHeight / 2;
+
+    return Tuple2(blockSizeWidth, blockSizeHeight);
+}
