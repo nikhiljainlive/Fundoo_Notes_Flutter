@@ -83,7 +83,10 @@ Image _welcomeImage(double width, double height) {
 }
 
 var _forgotPasswordTextButton = FlatButton(
-  child: Text('Forgot password?'),
+  child: Text(
+    'Forgot password?',
+    style: TextStyle(color: primaryColor),
+  ),
   onPressed: () {},
 );
 
@@ -101,13 +104,12 @@ var _welcomeUserText = Text(
   ),
 );
 
-
 Tuple2<double, double> _getWidthHeight(BuildContext context) {
-var _mediaQueryData = MediaQuery.of(context);
-    var screenWidth = _mediaQueryData.size.width;
-    var screenHeight = _mediaQueryData.size.height;
-    var blockSizeWidth = screenWidth / 2;
-    var blockSizeHeight = screenHeight / 2;
+  var _mediaQueryData = MediaQuery.of(context);
+  var screenWidth = _mediaQueryData.size.width;
+  var screenHeight = _mediaQueryData.size.height;
+  var blockSizeWidth = screenWidth / 2;
+  var blockSizeHeight = screenHeight / 2;
 
-    return Tuple2(blockSizeWidth, blockSizeHeight);
+  return Tuple2(blockSizeWidth, blockSizeHeight);
 }
