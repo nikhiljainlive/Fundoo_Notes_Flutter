@@ -73,7 +73,8 @@ class _HomePage extends StatelessWidget {
               style: TextStyle(color: primaryColor),
             ),
             onPressed: () {
-              forgotPasswordSimpleDialog(context);
+              // MARK : create dialog
+              forgotPasswordAlertDialog(context);
               // showDialog(context: context, builder: _sh)
             },
           ),

@@ -5,7 +5,6 @@ void forgotPasswordSimpleDialog(BuildContext context) {
     context: context,
     barrierDismissible: true,
     builder: (context) => SimpleDialog(
-          backgroundColor: Colors.transparent,
           contentPadding: EdgeInsets.all(10),
           elevation: 5.0,
           children: <Widget>[
@@ -35,7 +34,6 @@ void forgotPasswordAlertDialog(BuildContext context) {
       context: context,
       barrierDismissible: true,
       builder: (context) => AlertDialog(
-            backgroundColor: Colors.transparent,
             title: Text('Forgot Password?'),
             content: Container(
               padding: EdgeInsets.all(10),
@@ -53,7 +51,7 @@ void forgotPasswordAlertDialog(BuildContext context) {
             titlePadding: EdgeInsets.all(5),
             semanticLabel: 'Forgot password dialog showing...',
             actions: <Widget>[
-              RaisedButton(
+              FlatButton(
                 child: Text('ok'),
                 onPressed: () {},
               )
