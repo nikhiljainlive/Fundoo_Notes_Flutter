@@ -17,9 +17,10 @@ class Home extends StatelessWidget {
             tileMode: TileMode.clamp),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: _HomePage(),
-      ),
+          backgroundColor: Colors.transparent,
+          body: SafeArea(
+            child: _HomePage(),
+          )),
     );
   }
 }
@@ -67,15 +68,15 @@ class _HomePage extends StatelessWidget {
         ),
         Center(
           child: FlatButton(
-  child: Text(
-    'Forgot password?',
-    style: TextStyle(color: primaryColor),
-  ),
-  onPressed: () {
-    forgotPasswordDialog(context);
-    // showDialog(context: context, builder: _sh)
-  },
-),
+            child: Text(
+              'Forgot password?',
+              style: TextStyle(color: primaryColor),
+            ),
+            onPressed: () {
+              forgotPasswordSimpleDialog(context);
+              // showDialog(context: context, builder: _sh)
+            },
+          ),
         )
       ],
     ));
@@ -92,23 +93,23 @@ Image _welcomeImage(double width, double height) {
   );
 }
 
-var _forgotPasswordTextButton = FlatButton(
-  child: Text(
-    'Forgot password?',
-    style: TextStyle(color: primaryColor),
-  ),
-  onPressed: () {
-    // showDialog(context: context, builder: _sh)
-  },
-);
+// var _forgotPasswordTextButton = FlatButton(
+//   child: Text(
+//     'Forgot password?',
+//     style: TextStyle(color: primaryColor),
+//   ),
+//   onPressed: () {
+//     // showDialog(context: context, builder: _sh)
+//   },
+// );
 
 // unused for now
-const _showForgotPasswordDialog = Dialog(
-    child: Center(
-      child: Text('I am a Dialog'),
-    ),
-    backgroundColor: Colors.transparent,
-  );
+// const _showForgotPasswordDialog = Dialog(
+//   child: Center(
+//     child: Text('I am a Dialog'),
+//   ),
+//   backgroundColor: Colors.transparent,
+// );
 
 var _welcomeUserText = Text(
   'Welcome User!',
