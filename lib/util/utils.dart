@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fundoo_notes/colors.dart';
+import './colors.dart';
 
 RaisedButton createButton({String textString, Function action}) {
   return RaisedButton(
