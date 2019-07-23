@@ -36,6 +36,7 @@ void forgotPasswordAlertDialog(BuildContext context) {
       builder: (context) => AlertDialog(
             title: Text('Forgot Password?'),
             content: Container(
+              height: 100.0,
               padding: EdgeInsets.all(10),
               child: Column(
                 children: <Widget>[
@@ -52,7 +53,7 @@ void forgotPasswordAlertDialog(BuildContext context) {
             semanticLabel: 'Forgot password dialog showing...',
             actions: <Widget>[
               FlatButton(
-                child: Text('ok'),
+                child: Text('OK'),
                 onPressed: () {},
               )
             ],
