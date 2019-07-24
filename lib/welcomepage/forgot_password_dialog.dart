@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../util/colors.dart';
+import '../util/utils.dart';
 
 void forgotPasswordSimpleDialog(BuildContext context) {
   showDialog(
@@ -29,41 +31,56 @@ void forgotPasswordSimpleDialog(BuildContext context) {
   );
 }
 
-void forgotPasswordAlertDialog(BuildContext context) {
+// forgot password
+void showforgotPassAlertDialog(BuildContext context) {
   showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-            title: Column(
-              children: <Widget>[
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(10.0),
-                  child: Icon(Icons.close),
+            title: Center(
+              child: Text(
+                'Forgot Password?',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: primaryColor,
                 ),
-                Center(child: Text('Forgot Password?')),
-              ],
+              ),
             ),
             content: Container(
-                // padding: EdgeInsets.all(10),
-                child: TextField(
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                  // border: InputBorder.none,
-                  hintText: "Enter your email"),
-            )),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('CANCEL'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+              child: TextField(
+                // textAlign: TextAlign.center,
+                autofocus: true,
+                cursorColor: gradientCenterColor,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hasFloatingPlaceholder: true,
+                  labelText: 'Enter your email',
+                ),
               ),
-              FlatButton(
-                child: Text('SEND LINK'),
-                onPressed: () {},
-              )
+            ),
+            actions: <Widget>[
+              createFlatButton('SEND LINK', () {}),
+              createFlatButton('CANCEL', () => Navigator.pop(context)),
             ],
             semanticLabel: 'Forgot password dialog showing...',
           ));
 }
+
+//  Container(
+//                   // width: double.infinity,
+//                   //padding: EdgeInsets.all(10.0),
+//                   constraints: BoxConstraints(minHeight: 100.0),
+//                   child: Align(
+//                     alignment: Alignment.center,
+//                     child: IconButton(
+//                       icon: Icon(
+//                         Icons.close,
+//                       ),
+//                       color: primaryColor,
+//                       onPressed: () {
+//                         Navigator.pop(context);
+//                       },
+//                       tooltip: 'Close',
+//                     ),
+//                   ),
+//                 ),

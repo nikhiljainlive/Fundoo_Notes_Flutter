@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fundoo_notes/util/colors.dart';
-import 'package:fundoo_notes/util/utils.dart';
 import 'package:tuple/tuple.dart';
+
+import '../util/colors.dart';
+import '../util/utils.dart';
 import 'forgot_password_dialog.dart';
+import '../welcomepage/sign_up_dialog.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -47,6 +49,7 @@ class _HomePage extends StatelessWidget {
               createButton(
                   textString: 'Sign In',
                   action: () {
+                    // show sign in dialog
                     print('Sign In Pressed');
                   }),
               Padding(
@@ -62,6 +65,8 @@ class _HomePage extends StatelessWidget {
               createButton(
                   textString: 'Sign Up',
                   action: () {
+                    // show sign up dialog
+                    showSignUpAlertDialog(context);
                     print('Sign Up Pressed');
                   })
             ],
@@ -74,9 +79,7 @@ class _HomePage extends StatelessWidget {
               style: TextStyle(color: primaryColor),
             ),
             onPressed: () {
-              // MARK : create dialog
-              forgotPasswordAlertDialog(context);
-              // showDialog(context: context, builder: _sh)
+              showforgotPassAlertDialog(context);
             },
           ),
         )
@@ -94,24 +97,6 @@ Image _welcomeImage(double width, double height) {
     color: primaryColor.withAlpha(200),
   );
 }
-
-// var _forgotPasswordTextButton = FlatButton(
-//   child: Text(
-//     'Forgot password?',
-//     style: TextStyle(color: primaryColor),
-//   ),
-//   onPressed: () {
-//     // showDialog(context: context, builder: _sh)
-//   },
-// );
-
-// unused for now
-// const _showForgotPasswordDialog = Dialog(
-//   child: Center(
-//     child: Text('I am a Dialog'),
-//   ),
-//   backgroundColor: Colors.transparent,
-// );
 
 var _welcomeUserText = Text(
   'Welcome User!',

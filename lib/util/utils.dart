@@ -20,3 +20,12 @@ RaisedButton createButton({String textString, Function action}) {
     ),
   );
 }
+
+FlatButton createFlatButton(String text, Function onPressedAction) {
+  return FlatButton(
+    child: Text(text),
+    textColor: Colors.white,
+    onPressed: onPressedAction,
+    color: primaryColor,
+  );
+}
