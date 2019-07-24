@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
     var materialApp = MaterialApp(
       title: 'Fundoo Notes',
       color: Colors.blue,
-      home: Home(),
+      routes: {
+        '/': (context) => Home()
+      },
       debugShowCheckedModeBanner: false,
     );
     return materialApp;

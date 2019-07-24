@@ -18,6 +18,7 @@ class Home extends StatelessWidget {
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
+          resizeToAvoidBottomPadding: false,
           body: SafeArea(
             child: _HomePage(),
           )),
