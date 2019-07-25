@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../util/colors.dart';
 import '../util/utils.dart';
 
+// TODO : change this , dialog failing to render in landscape mode
 // forgot password
 void showSignUpAlertDialog(BuildContext context) {
   showDialog(
@@ -18,37 +19,27 @@ void showSignUpAlertDialog(BuildContext context) {
               ),
             ),
             content: Container(
-                child:
-                // TODO : change this , failing to render
-                 ListBody(
-              mainAxis: Axis.horizontal,
-              children: <Widget>[
-                createField('Username'),
-                createField('Password'),
-                createField('First Name'),
-                createField('Last Name'),
-                createField('Date Of Birth'),
-                createField('Email'),
-                createField('Mobile Number'),
-              ],
-            )),
+              child: ListView(
+                children: <Widget>[
+                  createField(text: 'Username'),
+                  createField(text: 'Password', isTextHidden: true),
+                  createField(text: 'First Name'),
+                  createField(text: 'Last Name'),
+                  createField(
+                      text: 'Date Of Birth',
+                      textInputType: TextInputType.datetime),
+                  createField(
+                      text: 'Email', textInputType: TextInputType.emailAddress),
+                  createField(
+                      text: 'Mobile Number',
+                      textInputType: TextInputType.phone),
+                ],
+              ),
+            ),
             actions: <Widget>[
               createFlatButton('SIGN UP', () {}),
               createFlatButton('CANCEL', () => Navigator.pop(context)),
             ],
             semanticLabel: 'Forgot password dialog showing...',
           ));
-}
-
-TextField createField(String text) {
-  return TextField(
-    // textAlign: TextAlign.center,
-    cursorColor: gradientCenterColor,
-    keyboardType: TextInputType.emailAddress,
-    textAlign: TextAlign.center,
-    decoration: InputDecoration(
-      hasFloatingPlaceholder: true,
-      labelText: text,
-    ),
-  );
 }

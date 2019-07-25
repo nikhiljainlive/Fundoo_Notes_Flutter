@@ -29,3 +29,22 @@ FlatButton createFlatButton(String text, Function onPressedAction) {
     color: primaryColor,
   );
 }
+
+TextField createField(
+    {@required String text,
+    TextAlign textAlign = TextAlign.left,
+    TextInputType textInputType = TextInputType.text,
+    TextInputAction textInputAction = TextInputAction.done,
+    bool isTextHidden = false}) {
+  return TextField(
+    obscureText: isTextHidden,
+    cursorColor: gradientCenterColor,
+    keyboardType: textInputType,
+    textAlign: textAlign,
+    textInputAction: textInputAction,
+    decoration: InputDecoration(
+      hasFloatingPlaceholder: true,
+      labelText: text,
+    ),
+  );
+}

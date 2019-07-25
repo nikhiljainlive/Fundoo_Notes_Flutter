@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../util/colors.dart';
 import '../util/utils.dart';
 
+// TODO : change this , dialog failing to render in landscape mode
 void forgotPasswordSimpleDialog(BuildContext context) {
   showDialog(
     context: context,

@@ -5,6 +5,7 @@ import '../util/colors.dart';
 import '../util/utils.dart';
 import 'forgot_password_dialog.dart';
 import '../welcomepage/sign_up_dialog.dart';
+import '../welcomepage/sign_in_dialog.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -20,9 +21,10 @@ class Home extends StatelessWidget {
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
-          resizeToAvoidBottomPadding: false,
           body: SafeArea(
-            child: _HomePage(),
+            child: SingleChildScrollView(
+              child: _HomePage(),
+            ),
           )),
     );
   }
@@ -50,6 +52,7 @@ class _HomePage extends StatelessWidget {
                   textString: 'Sign In',
                   action: () {
                     // show sign in dialog
+                    showSignInAlertDialog(context);
                     print('Sign In Pressed');
                   }),
               Padding(
