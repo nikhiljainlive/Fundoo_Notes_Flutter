@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+//import 'package:flutter/rendering.dart';
 import './util/colors.dart';
 
 import './welcomepage/home.dart';
@@ -24,3 +24,4 @@ class MyApp extends StatelessWidget {
     return materialApp;
   }
 }
+              

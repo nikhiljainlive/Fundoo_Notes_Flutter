@@ -3,9 +3,9 @@ import 'package:tuple/tuple.dart';
 
 import '../util/colors.dart';
 import '../util/utils.dart';
-import 'forgot_password_dialog.dart';
-import '../welcomepage/sign_up_dialog.dart';
-import '../welcomepage/sign_in_dialog.dart';
+import './widgets/forgot_password_dialog.dart';
+import './widgets/sign_up_dialog.dart';
+import './widgets/sign_in_dialog.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -20,12 +20,9 @@ class Home extends StatelessWidget {
             tileMode: TileMode.clamp),
       ),
       child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: SingleChildScrollView(
-              child: _HomePage(),
-            ),
-          )),
+        backgroundColor: Colors.transparent,
+        body: _HomePage(),
+      ),
     );
   }
 }
@@ -36,58 +33,63 @@ class _HomePage extends StatelessWidget {
     var tupleWidthHeight = _getWidthHeight(context);
     var blockSizeWidth = tupleWidthHeight.item1;
     var blockSizeHeight = tupleWidthHeight.item2;
-
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        _welcomeImage(blockSizeWidth, blockSizeHeight),
-        _welcomeUserText,
-        Padding(
-          padding: EdgeInsets.all(20),
-          child: Row(
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Center(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              createButton(
-                  textString: 'Sign In',
-                  action: () {
-                    // show sign in dialog
-                    showSignInAlertDialog(context);
-                    print('Sign In Pressed');
-                  }),
+              _welcomeImage(blockSizeWidth, blockSizeHeight),
+              _welcomeUserText,
               Padding(
-                child: Text(
-                  'or',
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontWeight: FontWeight.bold,
-                  ),
+                padding: EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    createButton(
+                        textString: 'Sign In',
+                        action: () {
+                          // show sign in dialog
+                          SignInDailogWidget.showSignInAlertDialog(context);
+                          print('Sign In Pressed');
+                        }),
+                    Padding(
+                      child: Text(
+                        'or',
+                        style: TextStyle(
+                          color: primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                    ),
+                    createButton(
+                        textString: 'Sign Up',
+                        action: () {
+                          // show sign up dialog
+                          showSignUpAlertDialog(context);
+                          print('Sign Up Pressed');
+                        })
+                  ],
                 ),
-                padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
               ),
-              createButton(
-                  textString: 'Sign Up',
-                  action: () {
-                    // show sign up dialog
-                    showSignUpAlertDialog(context);
-                    print('Sign Up Pressed');
-                  })
+              Center(
+                child: FlatButton(
+                  child: Text(
+                    'Forgot password?',
+                    style: TextStyle(color: primaryColor),
+                  ),
+                  onPressed: () {
+                    ForgotPassDialogWidget.showforgotPassAlertDialog(context);
+                    // showforgotPassAlertDialog(context);
+                  },
+                ),
+              )
             ],
           ),
         ),
-        Center(
-          child: FlatButton(
-            child: Text(
-              'Forgot password?',
-              style: TextStyle(color: primaryColor),
-            ),
-            onPressed: () {
-              showforgotPassAlertDialog(context);
-            },
-          ),
-        )
-      ],
-    ));
+      ),
+    );
   }
 }
 

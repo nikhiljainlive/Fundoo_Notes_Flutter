@@ -35,13 +35,17 @@ TextField createField(
     TextAlign textAlign = TextAlign.left,
     TextInputType textInputType = TextInputType.text,
     TextInputAction textInputAction = TextInputAction.done,
-    bool isTextHidden = false}) {
+    bool isTextHidden = false,
+    bool isAutoFocused = false,
+    void onSubmitFunc(String value)}) {
   return TextField(
+    autofocus: isAutoFocused,
     obscureText: isTextHidden,
     cursorColor: gradientCenterColor,
     keyboardType: textInputType,
     textAlign: textAlign,
     textInputAction: textInputAction,
+    onChanged: onSubmitFunc,
     decoration: InputDecoration(
       hasFloatingPlaceholder: true,
       labelText: text,
