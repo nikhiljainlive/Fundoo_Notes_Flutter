@@ -67,7 +67,7 @@ class _HomePage extends StatelessWidget {
                         textString: 'Sign Up',
                         action: () {
                           // show sign up dialog
-                          showSignUpAlertDialog(context);
+                          SignUpDialogWidget.showSignUpAlertDialog(context);
                           print('Sign Up Pressed');
                         })
                   ],
@@ -81,7 +81,6 @@ class _HomePage extends StatelessWidget {
                   ),
                   onPressed: () {
                     ForgotPassDialogWidget.showforgotPassAlertDialog(context);
-                    // showforgotPassAlertDialog(context);
                   },
                 ),
               )

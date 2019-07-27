@@ -38,6 +38,8 @@ class SignInDailogWidget extends StatelessWidget {
             );
   }
 
+// TextFormField
+
   // TODO : change this , dialog failing to render in landscape mode
   static void showSignInAlertDialog(BuildContext context) {
     showDialog(

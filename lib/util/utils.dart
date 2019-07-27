@@ -47,8 +47,22 @@ TextField createField(
     textInputAction: textInputAction,
     onChanged: onSubmitFunc,
     decoration: InputDecoration(
-      hasFloatingPlaceholder: true,
-      labelText: text,
-    ),
+        hasFloatingPlaceholder: true,
+        labelText: text,
+        alignLabelWithHint: true),
+  );
+}
+
+TextFormField createFormField(
+    {@required String text,
+    TextAlign textAlign = TextAlign.left,
+    TextInputType textInputType = TextInputType.text,
+    TextInputAction textInputAction = TextInputAction.done,
+    bool isTextHidden = false,
+    bool isAutoFocused = false,
+    void onSubmitFunc(String value)}) {
+  return TextFormField(
+    controller: TextEditingController(),
+    
   );
 }
