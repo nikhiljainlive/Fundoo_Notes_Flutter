@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tuple/tuple.dart';
 
 import '../util/colors.dart';
@@ -10,6 +11,11 @@ import './widgets/sign_in_dialog.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+      
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(

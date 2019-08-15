@@ -16,13 +16,15 @@ class SignUpDialogWidget extends StatefulWidget {
 }
 
 class _SignUpDialogWidgetState extends State<SignUpDialogWidget> {
-  String _username;
-  String _password;
-  String _firstName;
-  String _lastName;
-  String _dateOfBirth;
-  String _email;
-  String _mobNo;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  TextEditingController _usernameTextController = TextEditingController();
+  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _firstNameTextController = TextEditingController();
+  TextEditingController _lastNameTextController = TextEditingController();
+  TextEditingController _dobTextController = TextEditingController();
+  TextEditingController _emailTextController = TextEditingController();
+  TextEditingController _mobNumTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,8 @@ class _SignUpDialogWidgetState extends State<SignUpDialogWidget> {
       ),
       content: Container(
         child: SingleChildScrollView(
+            child: Form(
+          key: _formKey,
           child: Column(
             children: <Widget>[
               _usernameFormField(),
@@ -49,11 +53,18 @@ class _SignUpDialogWidgetState extends State<SignUpDialogWidget> {
               _mobNoFormField(),
             ],
           ),
-        ),
+        )),
       ),
       actions: <Widget>[
         createFlatButton('SIGN UP', () {
-          print(_username);
+          print(_usernameTextController.text);
+          print(_passwordTextController.text);
+          print(_firstNameTextController.text);
+          print(_lastNameTextController.text);
+          print(_dobTextController.text);
+          print(_emailTextController.text);
+          print(_mobNumTextController.text);
+          this._formKey.currentState.validate();
         }),
         createFlatButton('CANCEL', () => Navigator.pop(context)),
       ],
@@ -63,16 +74,24 @@ class _SignUpDialogWidgetState extends State<SignUpDialogWidget> {
 
   TextFormField _usernameFormField() {
     return TextFormField(
+      controller: _usernameTextController,
       autofocus: true,
       cursorColor: gradientCenterColor,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
-      onFieldSubmitted: (String value) {
-        _username = value;
-      },
-      onSaved: (String value) {
-        _username = value;
-      },
+      validator: (String value) {
+        if (value.length < 3) {
+          return 'Username is invalid';
+        } else
+          return null;
+      }, // TODO : username text
+      // onFieldSubmitted: (String value) {
+      //   _username = value;
+      // },
+
+      // onSaved: (String value) {
+      //   _username = value;
+      // },
       decoration: InputDecoration(
           hasFloatingPlaceholder: true,
           labelText: 'Username',
@@ -82,15 +101,19 @@ class _SignUpDialogWidgetState extends State<SignUpDialogWidget> {
 
   TextFormField _passwdFormField() {
     return TextFormField(
+      controller: _passwordTextController,
       cursorColor: gradientCenterColor,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
-      onFieldSubmitted: (String value) {
-        _password = value;
-      },
-      onSaved: (String value) {
-        _password = value;
-      },
+      obscureText: true,
+
+      // TODO :
+      // onFieldSubmitted: (String value) {
+      //   _password = value;
+      // },
+      // onSaved: (String value) {
+      //   _password = value;
+      // },
       decoration: InputDecoration(
           hasFloatingPlaceholder: true,
           labelText: 'Password',
@@ -100,15 +123,22 @@ class _SignUpDialogWidgetState extends State<SignUpDialogWidget> {
 
   TextFormField _firstNameFormField() {
     return TextFormField(
+      controller: _firstNameTextController,
       cursorColor: gradientCenterColor,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
-      onFieldSubmitted: (String value) {
-        _firstName = value;
+      validator: (String value) {
+        if (value.length < 3) {
+          return 'First name is invalid';
+        } else
+          return null;
       },
-      onSaved: (String value) {
-        _firstName = value;
-      },
+      // onFieldSubmitted: (String value) {
+      //   _firstName = value;
+      // },
+      // onSaved: (String value) {
+      //   _firstName = value;
+      // },
       decoration: InputDecoration(
           hasFloatingPlaceholder: true,
           labelText: 'First name',
@@ -118,15 +148,22 @@ class _SignUpDialogWidgetState extends State<SignUpDialogWidget> {
 
   TextFormField _lastNameFormField() {
     return TextFormField(
+      controller: _lastNameTextController,
       cursorColor: gradientCenterColor,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
-      onFieldSubmitted: (String value) {
-        _lastName = value;
+      validator: (String value) {
+        if (value.length < 3) {
+          return 'Last name is invalid';
+        } else
+          return null;
       },
-      onSaved: (String value) {
-        _lastName = value;
-      },
+      // onFieldSubmitted: (String value) {
+      //   _lastName = value;
+      // },
+      // onSaved: (String value) {
+      //   _lastName = value;
+      // },
       decoration: InputDecoration(
           hasFloatingPlaceholder: true,
           labelText: 'Last name',
@@ -136,15 +173,16 @@ class _SignUpDialogWidgetState extends State<SignUpDialogWidget> {
 
   TextFormField _dobFormField() {
     return TextFormField(
+      controller: _dobTextController,
       cursorColor: gradientCenterColor,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.datetime,
       textInputAction: TextInputAction.next,
-      onFieldSubmitted: (String value) {
-        _dateOfBirth = value;
-      },
-      onSaved: (String value) {
-        _dateOfBirth = value;
-      },
+      // onFieldSubmitted: (String value) {
+      //   _dateOfBirth = value;
+      // },
+      // onSaved: (String value) {
+      //   _dateOfBirth = value;
+      // },
       decoration: InputDecoration(
           hasFloatingPlaceholder: true,
           labelText: 'Date Of Birth',
@@ -153,16 +191,29 @@ class _SignUpDialogWidgetState extends State<SignUpDialogWidget> {
   }
 
   TextFormField _emailFormField() {
+    RegExp regExp = RegExp(
+      r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)',
+      caseSensitive: false,
+      multiLine: false,
+    );
+
     return TextFormField(
+      controller: _emailTextController,
       cursorColor: gradientCenterColor,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
-      onFieldSubmitted: (String value) {
-        _email = value;
+      validator: (String value) {
+        if (!regExp.hasMatch(value)) {
+          return 'Email Id is invalid';
+        } else
+          return null;
       },
-      onSaved: (String value) {
-        _email = value;
-      },
+      // onFieldSubmitted: (String value) {
+      //   _email = value;
+      // },
+      // onSaved: (String value) {
+      //   _email = value;
+      // },
       decoration: InputDecoration(
           hasFloatingPlaceholder: true,
           labelText: 'Email',
@@ -172,15 +223,22 @@ class _SignUpDialogWidgetState extends State<SignUpDialogWidget> {
 
   TextFormField _mobNoFormField() {
     return TextFormField(
+      controller: _mobNumTextController,
       cursorColor: gradientCenterColor,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.phone,
       textInputAction: TextInputAction.done,
-      onFieldSubmitted: (String value) {
-        _mobNo = value;
+      validator: (String value) {
+        if (value.length != 10) {
+          return 'Mobile Number is invalid';
+        } else
+          return null;
       },
-      onSaved: (String value) {
-        _mobNo = value;
-      },
+      // onFieldSubmitted: (String value) {
+      //   _mobNo = value;
+      // },
+      // onSaved: (String value) {
+      //   _mobNo = value;
+      // },
       decoration: InputDecoration(
           hasFloatingPlaceholder: true,
           labelText: 'Mobile Number',
